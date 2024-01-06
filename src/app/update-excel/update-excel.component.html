@@ -1,0 +1,35 @@
+
+<h1>Welcome :{{userName1}}</h1>
+
+   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-horizontal">
+    <div class="form-group">
+      <label for="num1" class="col-sm-2 control-label">Number 1:</label>
+      <div class="col-sm-10">
+        <input type="number" id="num1" formControlName="num1" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="num2" class="col-sm-2 control-label">Number 2:</label>
+      <div class="col-sm-10">
+        <input type="number" id="num2" formControlName="num2" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="sum" class="col-sm-2 control-label">Sum:</label>
+      <div class="col-sm-10">
+        <input type="text" id="sum" formControlName="sum" [(ngModel)]="sum" readonly class="form-control" />
+      </div>
+    </div>
+    <div class="form-group"> 
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="button" (click)="calculateSum()" [disabled]="form.get('num1')?.invalid || form.get('num2')?.invalid"
+          class="btn btn-primary">Calculate Sum</button>
+        <button type="submit" [disabled]="form.invalid" class="btn btn-success">Submit</button>
+      </div>
+    </div>
+  </form>
+
+  
+  <button class="btn btn-primary" (click)="logOut()">
+    logOut
+  </button>
