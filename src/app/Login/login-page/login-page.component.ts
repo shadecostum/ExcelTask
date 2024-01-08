@@ -67,7 +67,7 @@ constructor(private http:HttpClient,private route :Router){
         
         this.ExcelDataStore = XLSX.utils.sheet_to_json(sheet, { header }).slice(1);
         console.log(this.ExcelDataStore,"fetched json Data");
-        
+        console.log(this.ExcelDataStore[0].Results,"fetched json Data");
       });
   }
  
@@ -78,11 +78,14 @@ constructor(private http:HttpClient,private route :Router){
     const matchingUser = this.ExcelDataStore.find((user: User) =>
       user.user_Name?.trim().toLowerCase() === username.trim().toLowerCase() &&
       user.password?.trim() === password.trim()
+
     );
  
     if (matchingUser) {
       localStorage.setItem('user',username)
       localStorage.setItem('pas',password)
+     const value=this.ExcelDataStore[0].Results
+      localStorage.setItem('val',value)
       
       alert('Login successful!');
       this.route.navigateByUrl('/dashBoard')
@@ -104,5 +107,6 @@ interface User {
 
   user_Name: string;
   password: string;
+
 
 }
